@@ -1,16 +1,26 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-
+import {useNavigation} from '@react-navigation/native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {HISTORIAL} from '../../constants';
 type ExchangeRateProps = {
   currency: string;
   title: string;
 };
+
 export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
+  const navigation = useNavigation();
+
+  const handleDetailHistorial = () => {
+    navigation.navigate(HISTORIAL);
+  };
+
   return (
-    <View style={[styles.card, styles.shadowProp]}>
+    <TouchableOpacity
+      style={[styles.card, styles.shadowProp]}
+      onPress={() => handleDetailHistorial()}>
       <Text style={styles.titleName}>{title}</Text>
       <Text style={styles.currency}>{currency}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

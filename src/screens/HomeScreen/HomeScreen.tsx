@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
-import {ExchangeRate} from '../../Utils/ExchangeRate/ExchangeRate';
+import {ExchangeRate} from '../../components/ExchangeRate/ExchangeRate';
 
 export const HomeScreen: React.FC = () => {
   return (

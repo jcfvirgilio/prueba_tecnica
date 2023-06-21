@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {ItemExchange} from '../ItemExchange/ItemExchange';
 import {dataFixer} from '../../API/dataFixer';
 import {
   View,
@@ -8,8 +9,6 @@ import {
   Button,
   TouchableOpacity,
 } from 'react-native';
-
-import {ItemExchange} from '../../components/ItemExchange/ItemExchange';
 
 export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
   const [lastUpdated, setLastUpdated] = useState();
