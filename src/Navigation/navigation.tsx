@@ -19,7 +19,9 @@ export const NavigationTest = () => {
         <Stack.Screen
           name={HISTORIAL}
           component={HistorialCurrency}
-          options={{headerTitle: 'Historial'}}
+          options={{
+            headerTitle: 'Historial',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
