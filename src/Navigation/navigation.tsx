@@ -11,8 +11,16 @@ export const NavigationTest = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={HOME} component={HomeScreen} />
-        <Stack.Screen name={HISTORIAL} component={HistorialCurrency} />
+        <Stack.Screen
+          name={HOME}
+          component={HomeScreen}
+          options={{headerTitle: 'Inicio'}}
+        />
+        <Stack.Screen
+          name={HISTORIAL}
+          component={HistorialCurrency}
+          options={{headerTitle: 'Historial'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

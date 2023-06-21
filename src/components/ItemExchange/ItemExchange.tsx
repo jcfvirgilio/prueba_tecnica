@@ -10,16 +10,16 @@ type ExchangeRateProps = {
 export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
   const navigation = useNavigation();
 
-  const handleDetailHistorial = () => {
-    navigation.navigate(HISTORIAL);
+  const handleDetailHistorial = ({title}) => {
+    navigation.navigate(HISTORIAL, {name: {title}});
   };
 
   return (
     <TouchableOpacity
       style={[styles.card, styles.shadowProp]}
-      onPress={() => handleDetailHistorial()}>
+      onPress={() => handleDetailHistorial({title})}>
       <Text style={styles.titleName}>{title}</Text>
-      <Text style={styles.currency}>{currency}</Text>
+      <Text style={styles.currency}>{currency} MXN</Text>
     </TouchableOpacity>
   );
 };
