@@ -1,4 +1,4 @@
-import {dataFixer} from '../../src/API/dataFixer';
+import {dataFixer} from '../../src/API/AllExchange/dataFixer';
 
 describe('spaces before came-case capital letters', () => {
   test('renders currency', async () => {

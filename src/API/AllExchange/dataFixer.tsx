@@ -1,6 +1,5 @@
-import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {API_URL, API_KEY} from '@env';
+import {API_KEY} from '@env';
 import {ResultFixer} from './interface';
 
 export const dataFixer = async () => {

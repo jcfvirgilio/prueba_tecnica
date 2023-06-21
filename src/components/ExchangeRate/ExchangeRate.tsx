@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ItemExchange} from '../ItemExchange/ItemExchange';
-import {dataFixer} from '../../API/dataFixer';
+import {dataFixer} from '../../API/AllExchange/dataFixer';
 import {
   View,
   Text,

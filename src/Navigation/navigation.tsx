@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen} from '../screens/HomeScreen/HomeScreen';
 import {HistorialCurrency} from '../screens/DetailsScreen/HistorialCurrency';
 import {CurrencyConverterScreen} from '../screens/CurrencyConverterScreen/CurrencyConverterScreen';
-import {HISTORIAL, HOME, CURRENCY_CONVERTER} from '../constants';
+import {HISTORIAL, HOME, CURRENCY_CONVERTER, HOMETAB} from '../constants';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,7 +38,7 @@ const AppTabsScreen = () => (
       tabBarInactiveTintColor: '#6F3635',
       tabBarStyle: {backgroundColor: '#9C9523'},
     }}>
-    <Tabs.Screen name={HOME} component={StackHome} />
+    <Tabs.Screen name={HOMETAB} component={StackHome} />
     <Tabs.Screen
       name={CURRENCY_CONVERTER}
       component={CurrencyConverterScreen}
