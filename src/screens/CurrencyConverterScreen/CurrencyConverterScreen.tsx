@@ -1,51 +1,84 @@
 import React, {useState} from 'react';
-import {ResultSymbols} from '../../API/Symbols/interface';
+import SelectDropdown from 'react-native-select-dropdown';
+import {useSymbols} from '../../hooks/useSymbols';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {currencyExchange} from '../../API/CurrencyExchange/CurrencyExchange';
 import {
   SafeAreaView,
   Text,
   TouchableOpacity,
-  Button,
+  TextInput,
   StyleSheet,
 } from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown';
-import {useSymbols} from '../../hooks/useSymbols';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const CurrencyConverter = () => {
-  const [selectedCurrency, setSelectedCurrency] = useState('');
-  const [convertCurrency, setConvertCurrency] = useState('');
-  const [conversionResult, setConversionResult] = useState('');
+  const [selectedCurrencyTo, setSelectedCurrencyTo] = useState<
+    [string, string]
+  >(['MXN', 'Mexican Peso']);
+  const [selectedCurrencyFrom, setSelectedCurrencyFrom] = useState<
+    [string, string]
+  >(['USD', 'United States Dollar']);
+
+  const [amount, setAmount] = useState(0);
+  const [conversionResult, setConversionResult] = useState<number | boolean>(
+    false,
+  );
+
   const dataDropdown = useSymbols();
-  const handleConversion = () => {
-    const result = 10;
-    setConversionResult(result.toFixed(2));
+
+  const handleConversion = async () => {
+    const from: string = selectedCurrencyFrom[0];
+    const to: string = selectedCurrencyTo[0];
+    const amountP: number = parseInt(amount);
+
+    const {success, result} = await currencyExchange(from, to, amountP);
+    if (success) {
+      setConversionResult(result);
+    } else {
+      setConversionResult(success);
+    }
+  };
+
+  const handleAmountChange = (text: string) => {
+    const numericValue = text.replace(/[^0-9]/g, '').slice(0, 5);
+    setAmount(numericValue);
   };
 
   if (dataDropdown.isLoading) {
     return <Text>Cargando información...</Text>;
   }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.textDropDown}>Moneda:</Text>
+      <Text style={styles.textInput}>Cantidad:</Text>
+      <TextInput
+        style={styles.inputStyle}
+        value={amount}
+        onChangeText={handleAmountChange}
+        placeholder="Cantidad a convertir"
+        keyboardType="numeric"
+      />
+
+      <Text style={styles.textInput}>Moneda:</Text>
       {dataDropdown.data && (
         <SelectDropdown
           data={Object.entries(dataDropdown.data)}
-          buttonStyle={styles.dropdown3BtnStyle}
+          buttonStyle={styles.inputStyle}
           defaultValueByIndex={102}
           onSelect={(selectedItem: string) => {
-            setSelectedCurrency(selectedItem);
+            setSelectedCurrencyFrom(selectedItem);
           }}
         />
       )}
 
-      <Text style={styles.textDropDown}>Modena a convertir:</Text>
+      <Text style={styles.textInput}>Modena a convertir:</Text>
       {dataDropdown.data && (
         <SelectDropdown
           data={Object.entries(dataDropdown.data)}
-          buttonStyle={styles.dropdown3BtnStyle}
+          buttonStyle={styles.inputStyle}
           defaultValueByIndex={150}
           onSelect={(selectedItem: string) => {
-            setConvertCurrency(selectedItem);
+            setSelectedCurrencyTo(selectedItem);
           }}
         />
       )}
@@ -56,9 +89,9 @@ const CurrencyConverter = () => {
         <Text style={styles.appButtonText}>Convertir</Text>
       </TouchableOpacity>
 
-      {conversionResult !== '' && (
+      {conversionResult && (
         <Text style={styles.textConverted}>
-          Conversion Result: {conversionResult}
+          Conversión : {conversionResult}
         </Text>
       )}
     </SafeAreaView>
@@ -81,7 +114,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginLeft: 30,
   },
-  textDropDown: {
+  textInput: {
     fontSize: 20,
   },
   appButtonContainer: {
@@ -99,11 +132,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textTransform: 'uppercase',
   },
-  dropdown3BtnStyle: {
+  inputStyle: {
     width: '80%',
     height: 35,
     backgroundColor: '#FFF',
-    paddingHorizontal: 0,
+    paddingHorizontal: 10,
     borderWidth: 1,
     borderRadius: 8,
     borderColor: '#444',
