@@ -203,7 +203,6 @@ export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tipos de cambio actuales - MXN</Text>
       <View style={styles.itemContainerLasUpdated}>
         <Text>Última actualización: {lastUpdated}</Text>
         <TouchableOpacity style={styles.appButtonContainer}>
