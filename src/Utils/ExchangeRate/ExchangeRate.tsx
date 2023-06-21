@@ -1,23 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {dataFixer} from '../../API/dataFixer';
-import {View, Text, StyleSheet, FlatList, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 
-type ExchangeRateProps = {
-  currency: string;
-  title: string;
-};
-
-const Item = ({title, currency}: ExchangeRateProps) => (
-  <View style={[styles.card, styles.shadowProp]}>
-    <Text style={styles.titleName}>{title}</Text>
-    <Text style={styles.title}>{currency}</Text>
-  </View>
-);
+import {ItemExchange} from '../../components/ItemExchange/ItemExchange';
 
 export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
   const [lastUpdated, setLastUpdated] = useState();
   const [data, setData] = useState([
-    {currency: 0.213396, title: 'AED-JC'},
+    {currency: 0.213396, title: 'AED * JC'},
     {currency: 4.985961, title: 'AFN'},
     {currency: 5.716159, title: 'ALL'},
     {currency: 22.450423, title: 'AMD'},
@@ -188,9 +185,12 @@ export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
     {currency: 1.013532, title: 'ZMW'},
     {currency: 18.708235, title: 'ZWL'},
   ]);
+
   useEffect(() => {
     // getData();
   }, []);
+
+  const Separator = () => <View style={styles.separator} />;
 
   const getData = async () => {
     const {exchangeRatesResult, dateResult} = await dataFixer();
@@ -205,7 +205,13 @@ export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tipos de cambio actuales - MXN</Text>
-      <Text style={styles.updated}>Última actualización: {lastUpdated}</Text>
+      <View style={styles.itemContainerLasUpdated}>
+        <Text>Última actualización: {lastUpdated}</Text>
+        <TouchableOpacity style={styles.appButtonContainer}>
+          <Text style={styles.appButtonText}>Actualizar</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.itemHeader}>
         <Text style={styles.itemTextTitle}>Moneda</Text>
         <Text style={styles.itemTextTitle}>Tipo de Cambio</Text>
@@ -213,7 +219,7 @@ export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
       <FlatList
         data={data}
         renderItem={({item}) => {
-          return <Item title={item.title} currency={item.currency} />;
+          return <ItemExchange title={item.title} currency={item.currency} />;
         }}
         keyExtractor={item => item.title}
       />
@@ -224,44 +230,37 @@ export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 30,
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 20,
+    marginBottom: 25,
+  },
+  itemContainerLasUpdated: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 25,
   },
   itemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   itemTextTitle: {
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: '800',
   },
-
-  card: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
+  appButtonContainer: {
+    elevation: 8,
+    backgroundColor: '#009688',
     borderRadius: 10,
-    padding: 15,
-    width: '100%',
-    marginVertical: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
   },
-  shadowProp: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-  titleName: {
-    flex: 1,
+  appButtonText: {
+    fontSize: 10,
+    color: '#fff',
     fontWeight: 'bold',
-    textAlign: 'justify',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
   },
 });
