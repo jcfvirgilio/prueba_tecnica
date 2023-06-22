@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-# prueba_tecnica
-prueba tecnica
-=======
 # Divisas
 
 https://github.com/jcfvirgilio/prueba_tecnica/assets/33680097/3ef2e056-bbdf-4403-afc1-d140679ce6b2
-
 
 # Instrucciones de instalación
 
@@ -15,6 +10,7 @@ Estas son las instrucciones paso a paso para instalar y ejecutar el proyecto `pr
 
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
+- Tener un API KEY de Fixer: https://fixer.io/
 - Node.js: https://nodejs.org/
 - NPM: https://www.npmjs.com/get-npm
 - CocoaPods (solo para iOS): https://cocoapods.org/
@@ -124,4 +120,3 @@ Si tienes alguna pregunta o necesitas ayuda con la instalación o ejecución del
 ```
 
 ```
->>>>>>> master
