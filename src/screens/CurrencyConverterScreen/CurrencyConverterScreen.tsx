@@ -39,8 +39,8 @@ const CurrencyConverter = () => {
     }
   };
 
-  const handleAmountChange = (text: string) => {
-    const numericValue = text.replace(/[^0-9]/g, '').slice(0, 5);
+  const handleAmountChange = (valueProp: any) => {
+    const numericValue = valueProp.replace(/[^0-9]/g, '').slice(0, 5);
     setAmount(numericValue);
   };
 
