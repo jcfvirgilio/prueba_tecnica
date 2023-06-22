@@ -66,7 +66,7 @@ const CurrencyConverter = () => {
         <SelectDropdown
           data={Object.entries(dataDropdown.data)}
           buttonStyle={[styles.inputStyle, styles.shadowProp]}
-          defaultValueByIndex={102}
+          defaultValueByIndex={150}
           onSelect={(selectedItem: string) => {
             setSelectedCurrencyFrom(selectedItem);
           }}
@@ -78,7 +78,7 @@ const CurrencyConverter = () => {
         <SelectDropdown
           data={Object.entries(dataDropdown.data)}
           buttonStyle={[styles.inputStyle, styles.shadowProp]}
-          defaultValueByIndex={150}
+          defaultValueByIndex={102}
           onSelect={(selectedItem: string) => {
             setSelectedCurrencyTo(selectedItem);
           }}
