@@ -17,7 +17,8 @@ export const currencyExchange = async (
   try {
     const url = `https://data.fixer.io/api/convert?access_key=${API_KEY}&from=${from}&to=${to}&amount=${amount}`;
     const response = await axios.post(url);
-    return response.data;
+    const data = response.data;
+    return data;
   } catch (error) {
     console.log('Error  currencyExchange :::', error);
   }

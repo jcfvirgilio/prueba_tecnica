@@ -9,7 +9,10 @@ export const dataSymbols = async () => {
   try {
     const url = `https://data.fixer.io/api/symbols?access_key=${API_KEY}`;
     const response = await axios.post(url);
-    return response.data.symbols;
+    if (response?.data.success) {
+      return response?.data?.symbols;
+    }
+    return false;
   } catch (error) {
     console.log('Error Symbols:::', error);
   }

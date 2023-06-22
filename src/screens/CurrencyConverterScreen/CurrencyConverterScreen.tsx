@@ -21,7 +21,7 @@ const CurrencyConverter = () => {
     [string, string]
   >(['USD', 'United States Dollar']);
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<string | number>('');
   const [conversionResult, setConversionResult] = useState<number | boolean>(
     false,
   );
@@ -32,8 +32,9 @@ const CurrencyConverter = () => {
     const from: string = selectedCurrencyFrom[0];
     const to: string = selectedCurrencyTo[0];
     const amountP: number = parseInt(amount);
-
     const {success, result} = await currencyExchange(from, to, amountP);
+    console.log('success..', success);
+    console.log('result..', result);
     if (success) {
       setConversionResult(result);
     } else {
@@ -86,7 +87,7 @@ const CurrencyConverter = () => {
       )}
 
       <TouchableOpacity
-        onPress={handleConversion}
+        onPress={() => handleConversion()}
         style={[styles.buttonContainer, styles.shadowProp]}>
         <Text style={styles.buttonConvert}>Convertir</Text>
       </TouchableOpacity>
