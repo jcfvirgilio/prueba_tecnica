@@ -23,7 +23,6 @@ export const ItemFavorite = ({title, currency}: ExchangeRateProps) => {
 
   const handleDeleteFavorite = async (key: string) => {
     const resultDelete = await deleteItem(key);
-    console.log('resultDelete:::::', resultDelete);
   };
 
   return (

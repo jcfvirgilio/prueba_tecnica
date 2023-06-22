@@ -8,9 +8,13 @@ import React, {useState, useEffect} from 'react';
 import {ItemExchange} from '../ItemExchange/ItemExchange';
 import {dataFixer} from '../../API/AllExchange/dataFixer';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {Loader} from '../Loader/Loader';
+import {AlertCustom} from '../Alert/AlertCustom';
 
 export const ExchangeRate = () => {
-  const [lastUpdated, setLastUpdated] = useState();
+  const [lastUpdated, setLastUpdated] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -18,15 +22,31 @@ export const ExchangeRate = () => {
   }, []);
 
   const getData = async () => {
-    const {exchangeRatesResult, dateResult} = await dataFixer();
-    setLastUpdated(dateResult);
-    setData(
-      Object.entries(exchangeRatesResult).map(([title, currency]) => ({
-        title,
-        currency,
-      })),
-    );
+    const result = await dataFixer();
+    if (result === 'error') {
+      setIsError(true);
+    } else {
+      const {exchangeRatesResult, dateResult} = result;
+      setLoading(false);
+      setIsError(false);
+      setLastUpdated(dateResult);
+      setData(
+        Object.entries(exchangeRatesResult).map(([title, currency]) => ({
+          title,
+          currency,
+        })),
+      );
+    }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <AlertCustom message="No se logró obtener la información" />;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.itemContainerLasUpdated}>

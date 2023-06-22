@@ -4,6 +4,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import {useSymbols} from '../../hooks/useSymbols';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {currencyExchange} from '../../API/CurrencyExchange/CurrencyExchange';
+import {Loader} from '../../components/Loader/Loader';
 import {
   SafeAreaView,
   Text,
@@ -46,7 +47,7 @@ const CurrencyConverter = () => {
   };
 
   if (dataDropdown.isLoading) {
-    return <Text>Cargando información...</Text>;
+    return <Loader />;
   }
 
   return (

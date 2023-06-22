@@ -18,8 +18,7 @@ export const dataFixer = async () => {
     exchangeRatesResult = rates;
     dateResult = date;
   } catch (error) {
-    console.log('Error fetching exchange rates:::', error);
+    return 'error';
   }
-
   return {exchangeRatesResult, dateResult};
 };

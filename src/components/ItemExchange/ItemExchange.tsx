@@ -5,7 +5,7 @@ Este es un componente de React en TypeScript que muestra un elemento de tasa de 
  */
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {HISTORIAL} from '../../constants';
 import {saveItem} from '../../store/store';
 
@@ -35,14 +35,18 @@ export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
         <Text style={styles.currency}>{currency} MXN</Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity
-          style={
-            isFavorite === FAVORITOS
-              ? styles.favoritesButton
-              : styles.deleteFavorite
-          }
-          onPress={() => handleSaveFavorite(title, currency)}>
-          <Text>{isFavorite}</Text>
+        <TouchableOpacity onPress={() => handleSaveFavorite(title, currency)}>
+          {isFavorite === FAVORITOS ? (
+            <Image
+              source={require('./img/heart.png')}
+              style={styles.imgStyle}
+            />
+          ) : (
+            <Image
+              source={require('./img/heart_fill.png')}
+              style={styles.imgStyle}
+            />
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.historialButton}
@@ -76,7 +80,10 @@ const styles = StyleSheet.create({
   currency: {
     fontSize: 19,
   },
-
+  imgStyle: {
+    width: 15,
+    height: 15,
+  },
   favoritesButton: {
     backgroundColor: '#99CAF9',
     borderRadius: 7,
