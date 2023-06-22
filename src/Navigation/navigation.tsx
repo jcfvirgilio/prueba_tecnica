@@ -35,8 +35,8 @@ const AppTabsScreen = () => (
     screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: '#A8F49A',
-      tabBarInactiveTintColor: '#6F3635',
-      tabBarStyle: {backgroundColor: '#9C9523'},
+      tabBarInactiveTintColor: '#A197B0',
+      tabBarStyle: {backgroundColor: '#0A2955'},
     }}>
     <Tabs.Screen name={HOMETAB} component={StackHome} />
     <Tabs.Screen

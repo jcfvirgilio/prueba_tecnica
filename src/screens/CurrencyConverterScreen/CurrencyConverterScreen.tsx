@@ -85,8 +85,8 @@ const CurrencyConverter = () => {
 
       <TouchableOpacity
         onPress={handleConversion}
-        style={styles.appButtonContainer}>
-        <Text style={styles.appButtonText}>Convertir</Text>
+        style={styles.buttonContainer}>
+        <Text style={styles.buttonConvert}>Convertir</Text>
       </TouchableOpacity>
 
       {conversionResult && (
@@ -117,16 +117,16 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 20,
   },
-  appButtonContainer: {
+  buttonContainer: {
     elevation: 8,
-    backgroundColor: '#009688',
+    backgroundColor: '#BD28CC',
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
     marginBottom: 20,
     width: '80%',
   },
-  appButtonText: {
+  buttonConvert: {
     fontSize: 15,
     color: '#fff',
     alignSelf: 'center',
