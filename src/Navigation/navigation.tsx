@@ -1,3 +1,4 @@
+/* Este código está importando los módulos y componentes necesarios de la biblioteca React Navigation para crear un sistema de navegación para una aplicación móvil. Define un navegador de tipo stack y un navegador de pestañas inferiores, y configura las pantallas que se mostrarán dentro de esos navegadores. El componente `NavigationTest` es el componente de nivel superior que envuelve todo el sistema de navegación dentro de un `NavigationContainer`. */
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -24,7 +25,7 @@ const StackHome = () => (
       name={HOME}
       component={HomeScreen}
       options={{
-        headerTitle: 'Tipos de Cambios Actuales - MXN',
+        title: 'Tipos de Cambios',
       }}
     />
     <Stack.Screen
@@ -40,17 +41,31 @@ const StackHome = () => (
 const AppTabsScreen = () => (
   <Tabs.Navigator
     screenOptions={{
-      headerShown: false,
       tabBarActiveTintColor: '#A8F49A',
       tabBarInactiveTintColor: '#A197B0',
       tabBarStyle: {backgroundColor: '#0A2955'},
     }}>
-    <Tabs.Screen name={HOMETAB} component={StackHome} />
+    <Tabs.Screen
+      name={HOMETAB}
+      component={StackHome}
+      options={{
+        headerShown: false,
+      }}
+    />
     <Tabs.Screen
       name={CURRENCY_CONVERTER}
       component={CurrencyConverterScreen}
+      options={{
+        title: 'Convertir Moneda',
+      }}
     />
-    <Tabs.Screen name={FAVORITE} component={FavoritesScreen} />
+    <Tabs.Screen
+      name={FAVORITE}
+      component={FavoritesScreen}
+      options={{
+        title: 'Favoritos',
+      }}
+    />
   </Tabs.Navigator>
 );
 

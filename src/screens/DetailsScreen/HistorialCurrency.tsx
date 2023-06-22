@@ -1,3 +1,8 @@
+/* Este código define un componente de React llamado `HistorialCurrency` que renderiza un gráfico de líneas utilizando
+el componente `LineChart` de la biblioteca `react-native-gifted-charts`. El gráfico muestra
+datos históricos de moneda e incluye varias opciones de estilo y configuración, como color,
+grosor, espaciado y etiquetas de ejes. El componente también incluye un componente `Text` que muestra
+el título del gráfico, el cual se pasa como una propiedad llamada `name` desde el objeto de navegación. */
 import React from 'react';
 import {View, Text} from 'react-native';
 import {LineChart} from 'react-native-gifted-charts';

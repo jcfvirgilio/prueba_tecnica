@@ -1,3 +1,13 @@
+/**
+ Este es un conjunto de funciones para interactuar con AsyncStorage en una aplicación TypeScript React,
+incluyendo guardar, eliminar, obtener y borrar datos.
+
+@param {string} keyName - una cadena que representa la clave bajo la cual se almacenarán/recuperarán/eliminarán los datos en AsyncStorage.
+
+@param {string} value - El valor que se almacenará en AsyncStorage. Puede ser una cadena o cualquier otro tipo de dato que se pueda convertir a cadena.
+
+@returns La función saveItem devuelve una Promise que se resuelve con un valor booleano que indica si el elemento se guardó correctamente o no. La función deleteItem devuelve una Promise que se resuelve con un valor booleano que indica si el elemento se eliminó correctamente o no. La función getItem devuelve una Promise que se resuelve con un valor de cadena o null si no se encuentra el elemento. La función getAllKeys devuelve una Promise que se resuelve con una matriz de claves de todos los elementos almacenados.
+**/
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const saveItem = async (

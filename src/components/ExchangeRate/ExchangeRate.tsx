@@ -1,3 +1,9 @@
+/* Este es un componente de React llamado `ExchangeRate` que muestra una lista de tasas de cambio para diferentes
+monedas. Importa varios componentes y funciones de React y otros archivos, incluyendo los
+hooks `useState` y `useEffect` para gestionar el estado y los efectos secundarios, y una función `dataFixer` para
+obtener datos de tasas de cambio desde el API de fixer. El componente renderiza un encabezado con la fecha de última actualización
+y un botón para actualizar los datos, seguido de una tabla de tasas de cambio utilizando el componente `FlatList`
+y un componente personalizado `ItemExchange`. El componente también define algunos estilos utilizando la API `StyleSheet`. */
 import React, {useState, useEffect} from 'react';
 import {ItemExchange} from '../ItemExchange/ItemExchange';
 import {dataFixer} from '../../API/AllExchange/dataFixer';
@@ -25,7 +31,9 @@ export const ExchangeRate = () => {
     <View style={styles.container}>
       <View style={styles.itemContainerLasUpdated}>
         <Text>Última actualización: {lastUpdated}</Text>
-        <TouchableOpacity style={styles.appButtonContainer}>
+        <TouchableOpacity
+          style={styles.appButtonContainer}
+          onPress={() => getData()}>
           <Text style={styles.appButtonText}>Actualizar</Text>
         </TouchableOpacity>
       </View>

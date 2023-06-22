@@ -1,3 +1,4 @@
+/* Este es un componente de React en TypeScript que crea una pantalla de conversor de moneda*/
 import React, {useState} from 'react';
 import SelectDropdown from 'react-native-select-dropdown';
 import {useSymbols} from '../../hooks/useSymbols';
@@ -52,7 +53,7 @@ const CurrencyConverter = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.textInput}>Cantidad:</Text>
       <TextInput
-        style={styles.inputStyle}
+        style={[styles.inputStyle, styles.shadowProp]}
         value={amount}
         onChangeText={handleAmountChange}
         placeholder="Cantidad a convertir"
@@ -63,7 +64,7 @@ const CurrencyConverter = () => {
       {dataDropdown.data && (
         <SelectDropdown
           data={Object.entries(dataDropdown.data)}
-          buttonStyle={styles.inputStyle}
+          buttonStyle={[styles.inputStyle, styles.shadowProp]}
           defaultValueByIndex={102}
           onSelect={(selectedItem: string) => {
             setSelectedCurrencyFrom(selectedItem);
@@ -75,7 +76,7 @@ const CurrencyConverter = () => {
       {dataDropdown.data && (
         <SelectDropdown
           data={Object.entries(dataDropdown.data)}
-          buttonStyle={styles.inputStyle}
+          buttonStyle={[styles.inputStyle, styles.shadowProp]}
           defaultValueByIndex={150}
           onSelect={(selectedItem: string) => {
             setSelectedCurrencyTo(selectedItem);
@@ -85,7 +86,7 @@ const CurrencyConverter = () => {
 
       <TouchableOpacity
         onPress={handleConversion}
-        style={styles.buttonContainer}>
+        style={[styles.buttonContainer, styles.shadowProp]}>
         <Text style={styles.buttonConvert}>Convertir</Text>
       </TouchableOpacity>
 
@@ -109,10 +110,9 @@ export const CurrencyConverterScreen = () => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '95%',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    marginLeft: 30,
+    backgroundColor: 'white',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   textInput: {
     fontSize: 20,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
-    marginBottom: 20,
+    marginBottom: 70,
     width: '80%',
   },
   buttonConvert: {
@@ -140,10 +140,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: '#444',
-    marginBottom: 50,
+    marginBottom: 30,
+  },
+  shadowProp: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 5,
   },
   textConverted: {
-    fontSize: 20,
+    fontSize: 25,
+    marginBottom: 40,
     fontWeight: '700',
   },
 });

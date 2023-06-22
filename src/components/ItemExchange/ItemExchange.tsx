@@ -1,3 +1,8 @@
+/**
+Este es un componente de React en TypeScript que muestra un elemento de tasa de cambio con opciones para agregarlo a favoritos y ver datos históricos.
+@property {string} currency - Una cadena que representa el valor de la moneda para la tasa de cambio.
+@property {string} title - Una cadena que representa el nombre o título del elemento de tasa de cambio.
+ */
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';

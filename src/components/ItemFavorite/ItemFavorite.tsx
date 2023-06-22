@@ -1,3 +1,8 @@
+/**
+ Este es un componente de React en TypeScript que muestra un elemento con un título y una moneda, y permite al usuario eliminarlo de favoritos o ver sus datos históricos.
+@property {string} currency - Una cadena que representa el código de moneda (por ejemplo, USD, EUR, MXN) para la tasa de cambio que se muestra en el componente.
+@property {string} title - Una cadena que representa el título del elemento que se mostrará en el componente.
+ */
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
