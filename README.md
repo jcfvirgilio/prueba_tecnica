@@ -1,6 +1,9 @@
-# prueba_tecnica
+# Divisas
 
-# Instrucciones de instalación de prueba_tecnica
+https://github.com/jcfvirgilio/prueba_tecnica/assets/33680097/3ef2e056-bbdf-4403-afc1-d140679ce6b2
+
+
+# Instrucciones de instalación
 
 Estas son las instrucciones paso a paso para instalar y ejecutar el proyecto `prueba_tecnica` en dispositivos móviles iOS y Android.
 
