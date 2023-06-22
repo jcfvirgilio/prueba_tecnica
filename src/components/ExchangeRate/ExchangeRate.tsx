@@ -1,14 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {ItemExchange} from '../ItemExchange/ItemExchange';
 import {dataFixer} from '../../API/AllExchange/dataFixer';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 
 export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
   const [lastUpdated, setLastUpdated] = useState();
@@ -188,8 +181,6 @@ export const ExchangeRate: React.FC<ExchangeRateProps> = () => {
   useEffect(() => {
     // getData();
   }, []);
-
-  const Separator = () => <View style={styles.separator} />;
 
   const getData = async () => {
     const {exchangeRatesResult, dateResult} = await dataFixer();

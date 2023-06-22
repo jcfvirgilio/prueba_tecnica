@@ -23,7 +23,8 @@ export const getItem = async (keyName: string): Promise<string | null> => {
 export const getAllKeys = async (): Promise<string[]> => {
   try {
     const allKeys = await AsyncStorage.getAllKeys();
-    return allKeys;
+    const allData = await AsyncStorage.multiGet(allKeys);
+    return allData;
   } catch (error) {
     return [];
   }

@@ -9,10 +9,8 @@ type ExchangeRateProps = {
   title: string;
 };
 
-export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
+export const ItemFavorite = ({title, currency}: ExchangeRateProps) => {
   const navigation = useNavigation();
-  const FAVORITOS = 'Agregar a Favoritos';
-  const [isFavorite, setIsFavorite] = useState<string>(FAVORITOS);
 
   const handleDetailHistorial = (titleName: string) => {
     navigation.navigate(HISTORIAL, {name: {titleName}});
@@ -31,13 +29,9 @@ export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
       </View>
       <View style={styles.row}>
         <TouchableOpacity
-          style={
-            isFavorite === FAVORITOS
-              ? styles.favoritesButton
-              : styles.deleteFavorite
-          }
+          style={styles.deleteFavorite}
           onPress={() => handleSaveFavorite(title, currency)}>
-          <Text>{isFavorite}</Text>
+          <Text>Elminar de Favoritos</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.historialButton}
@@ -72,12 +66,6 @@ const styles = StyleSheet.create({
     fontSize: 19,
   },
 
-  favoritesButton: {
-    backgroundColor: '#99CAF9',
-    borderRadius: 7,
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-  },
   deleteFavorite: {
     backgroundColor: '#1D9EB8',
     borderRadius: 7,
