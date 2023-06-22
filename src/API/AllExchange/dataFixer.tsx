@@ -20,5 +20,6 @@ export const dataFixer = async () => {
   } catch (error) {
     return 'error';
   }
+
   return {exchangeRatesResult, dateResult};
 };
