@@ -5,6 +5,7 @@ import {useSymbols} from '../../hooks/useSymbols';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {currencyExchange} from '../../API/CurrencyExchange/CurrencyExchange';
 import {Loader} from '../../components/Loader/Loader';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   SafeAreaView,
   Text,
@@ -52,52 +53,54 @@ const CurrencyConverter = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.textInput}>Cantidad:</Text>
-      <TextInput
-        style={[styles.inputStyle, styles.shadowProp]}
-        value={amount}
-        onChangeText={handleAmountChange}
-        placeholder="Cantidad a convertir"
-        keyboardType="numeric"
-      />
-
-      <Text style={styles.textInput}>Moneda:</Text>
-      {dataDropdown.data && (
-        <SelectDropdown
-          data={Object.entries(dataDropdown.data)}
-          buttonStyle={[styles.inputStyle, styles.shadowProp]}
-          defaultValueByIndex={150}
-          onSelect={(selectedItem: string) => {
-            setSelectedCurrencyFrom(selectedItem);
-          }}
+    <KeyboardAwareScrollView style={styles.containerKey}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.textInput}>Cantidad:</Text>
+        <TextInput
+          style={[styles.inputStyle, styles.shadowProp]}
+          value={amount}
+          onChangeText={handleAmountChange}
+          placeholder="Cantidad a convertir"
+          keyboardType="numeric"
         />
-      )}
 
-      <Text style={styles.textInput}>Modena a convertir:</Text>
-      {dataDropdown.data && (
-        <SelectDropdown
-          data={Object.entries(dataDropdown.data)}
-          buttonStyle={[styles.inputStyle, styles.shadowProp]}
-          defaultValueByIndex={102}
-          onSelect={(selectedItem: string) => {
-            setSelectedCurrencyTo(selectedItem);
-          }}
-        />
-      )}
+        <Text style={styles.textInput}>Moneda:</Text>
+        {dataDropdown.data && (
+          <SelectDropdown
+            data={Object.entries(dataDropdown.data)}
+            buttonStyle={[styles.inputStyle, styles.shadowProp]}
+            defaultValueByIndex={150}
+            onSelect={(selectedItem: string) => {
+              setSelectedCurrencyFrom(selectedItem);
+            }}
+          />
+        )}
 
-      <TouchableOpacity
-        onPress={() => handleConversion()}
-        style={[styles.buttonContainer, styles.shadowProp]}>
-        <Text style={styles.buttonConvert}>Convertir</Text>
-      </TouchableOpacity>
+        <Text style={styles.textInput}>Modena a convertir:</Text>
+        {dataDropdown.data && (
+          <SelectDropdown
+            data={Object.entries(dataDropdown.data)}
+            buttonStyle={[styles.inputStyle, styles.shadowProp]}
+            defaultValueByIndex={102}
+            onSelect={(selectedItem: string) => {
+              setSelectedCurrencyTo(selectedItem);
+            }}
+          />
+        )}
 
-      {conversionResult && (
-        <Text style={styles.textConverted}>
-          Conversión : {conversionResult}
-        </Text>
-      )}
-    </SafeAreaView>
+        <TouchableOpacity
+          onPress={() => handleConversion()}
+          style={[styles.buttonContainer, styles.shadowProp]}>
+          <Text style={styles.buttonConvert}>Convertir</Text>
+        </TouchableOpacity>
+
+        {conversionResult && (
+          <Text style={styles.textConverted}>
+            Conversión : {conversionResult}
+          </Text>
+        )}
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -110,6 +113,9 @@ export const CurrencyConverterScreen = () => (
 );
 
 const styles = StyleSheet.create({
+  containerKey: {
+    backgroundColor: 'white',
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',

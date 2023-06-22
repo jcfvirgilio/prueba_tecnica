@@ -14,6 +14,7 @@ import {
   HOMETAB,
   FAVORITE,
 } from '../constants';
+import {Image, StyleSheet} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,12 @@ const AppTabsScreen = () => (
       component={StackHome}
       options={{
         headerShown: false,
+        tabBarIcon: ({focused, color, size}) => {
+          let icon = focused
+            ? require('./img/home-activate.png')
+            : require('./img/home.png');
+          return <Image source={icon} style={styles.imageTab} />;
+        },
       }}
     />
     <Tabs.Screen
@@ -57,6 +64,12 @@ const AppTabsScreen = () => (
       component={CurrencyConverterScreen}
       options={{
         title: 'Convertir Moneda',
+        tabBarIcon: ({focused, color, size}) => {
+          let icon = focused
+            ? require('./img/exchange-activate.png')
+            : require('./img/exchange.png');
+          return <Image source={icon} style={styles.imageTab} />;
+        },
       }}
     />
     <Tabs.Screen
@@ -64,6 +77,12 @@ const AppTabsScreen = () => (
       component={FavoritesScreen}
       options={{
         title: 'Favoritos',
+        tabBarIcon: ({focused, color, size}) => {
+          let icon = focused
+            ? require('./img/heart-activate.png')
+            : require('./img/heart.png');
+          return <Image source={icon} style={styles.imageTab} />;
+        },
       }}
     />
   </Tabs.Navigator>
@@ -76,3 +95,10 @@ export const NavigationTest = () => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  imageTab: {
+    width: 25,
+    height: 25,
+  },
+});
