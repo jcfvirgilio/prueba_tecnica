@@ -5,14 +5,9 @@ export const saveItem = async (
   value: string,
 ): Promise<boolean> => {
   try {
-    if (value.trim()) {
-      await AsyncStorage.setItem(keyName, value);
-      console.log('Datos almacenados correctamente.');
-      return true;
-    }
-    return false;
+    await AsyncStorage.setItem(keyName, value.toString());
+    return true;
   } catch (error) {
-    console.log('Error al almacenar los datos: ', error);
     return false;
   }
 };

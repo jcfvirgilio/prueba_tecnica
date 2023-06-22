@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {HISTORIAL} from '../../constants';
+import {saveItem} from '../../store/store';
+
 type ExchangeRateProps = {
   currency: string;
   title: string;
@@ -9,9 +11,17 @@ type ExchangeRateProps = {
 
 export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
   const navigation = useNavigation();
+  const FAVORITOS = 'Agregar a Favoritos';
+  const [isFavorite, setIsFavorite] = useState<string>(FAVORITOS);
 
   const handleDetailHistorial = ({title}) => {
     navigation.navigate(HISTORIAL, {name: {title}});
+  };
+
+  const handleSaveFavorite = async (key: string, value: string) => {
+    const r = await saveItem(key, value);
+    r ? setIsFavorite('Eliminar de Favoritos') : setIsFavorite();
+    console.log('::::::::::::,', r);
   };
 
   return (
@@ -21,8 +31,14 @@ export const ItemExchange = ({title, currency}: ExchangeRateProps) => {
         <Text style={styles.currency}>{currency} MXN</Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity style={styles.favouritesButton}>
-          <Text>Agregar a favoritos</Text>
+        <TouchableOpacity
+          style={
+            isFavorite === FAVORITOS
+              ? styles.favoritesButton
+              : styles.deleteFavorite
+          }
+          onPress={() => handleSaveFavorite(title, currency)}>
+          <Text>{isFavorite}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.historialButton}
@@ -57,8 +73,14 @@ const styles = StyleSheet.create({
     fontSize: 19,
   },
 
-  favouritesButton: {
+  favoritesButton: {
     backgroundColor: '#99CAF9',
+    borderRadius: 7,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+  },
+  deleteFavorite: {
+    backgroundColor: '#1D9EB8',
     borderRadius: 7,
     paddingVertical: 5,
     paddingHorizontal: 15,
