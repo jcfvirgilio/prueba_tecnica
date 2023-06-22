@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {ItemFavorite} from '../../components/ItemFavorite/ItemFavorite';
 import {getAllKeys} from '../../store/store';
 
@@ -8,7 +8,7 @@ export const FavoritesScreen = () => {
 
   useEffect(() => {
     handlerGetData();
-  }, []);
+  }, [data]);
 
   const handlerGetData = async () => {
     const resultData = await getAllKeys();

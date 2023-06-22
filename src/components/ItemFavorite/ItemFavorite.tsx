@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {HISTORIAL} from '../../constants';
-import {saveItem} from '../../store/store';
+import {deleteItem} from '../../store/store';
 
 type ExchangeRateProps = {
   currency: string;
@@ -16,9 +16,9 @@ export const ItemFavorite = ({title, currency}: ExchangeRateProps) => {
     navigation.navigate(HISTORIAL, {name: {titleName}});
   };
 
-  const handleSaveFavorite = async (key: string, value: string) => {
-    const resultSave = await saveItem(key, value);
-    resultSave ? setIsFavorite('Eliminar de Favoritos') : setIsFavorite();
+  const handleDeleteFavorite = async (key: string) => {
+    const resultDelete = await deleteItem(key);
+    console.log('resultDelete:::::', resultDelete);
   };
 
   return (
@@ -30,7 +30,7 @@ export const ItemFavorite = ({title, currency}: ExchangeRateProps) => {
       <View style={styles.row}>
         <TouchableOpacity
           style={styles.deleteFavorite}
-          onPress={() => handleSaveFavorite(title, currency)}>
+          onPress={() => handleDeleteFavorite(title)}>
           <Text>Elminar de Favoritos</Text>
         </TouchableOpacity>
         <TouchableOpacity

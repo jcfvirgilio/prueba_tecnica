@@ -12,6 +12,15 @@ export const saveItem = async (
   }
 };
 
+export const deleteItem = async (key: string): Promise<boolean> => {
+  try {
+    await AsyncStorage.removeItem(key);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const getItem = async (keyName: string): Promise<string | null> => {
   try {
     return await AsyncStorage.getItem(keyName);
