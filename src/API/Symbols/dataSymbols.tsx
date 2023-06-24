@@ -4,8 +4,9 @@
  **/
 import axios from 'axios';
 import {API_KEY} from '@env';
+import {ResultSymbols} from './interface';
 
-export const dataSymbols = async () => {
+export const dataSymbols = async (): Promise<ResultSymbols | false> => {
   try {
     const url = `https://data.fixer.io/api/symbols?access_key=${API_KEY}`;
     const response = await axios.post(url);
@@ -15,5 +16,6 @@ export const dataSymbols = async () => {
     return false;
   } catch (error) {
     console.log('Error Symbols:::', error);
+    return false;
   }
 };

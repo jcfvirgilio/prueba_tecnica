@@ -8,12 +8,12 @@ import {API_KEY} from '@env';
 import {ResultFixer} from './interface';
 
 export const dataFixer = async () => {
-  let exchangeRatesResult: {[key: string]: number} = {};
+  let exchangeRatesResult: ResultFixer['rates'] = {};
   let dateResult: string = '';
 
   try {
     const url = `https://data.fixer.io/api/latest?access_key=${API_KEY}&base=MXN`;
-    const response = await axios.post<ResultFixer>(url);
+    const response = await axios.post(url);
     const {rates, date} = response.data;
     exchangeRatesResult = rates;
     dateResult = date;

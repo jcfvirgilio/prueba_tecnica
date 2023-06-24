@@ -8,12 +8,13 @@
  **/
 import axios from 'axios';
 import {API_KEY} from '@env';
+import {ResultExchange} from './interface';
 
 export const currencyExchange = async (
   from: string,
   to: string,
   amount: number,
-) => {
+): Promise<ResultExchange | false> => {
   try {
     const url = `https://data.fixer.io/api/convert?access_key=${API_KEY}&from=${from}&to=${to}&amount=${amount}`;
     const response = await axios.post(url);
@@ -21,5 +22,6 @@ export const currencyExchange = async (
     return data;
   } catch (error) {
     console.log('Error  currencyExchange :::', error);
+    return false;
   }
 };
