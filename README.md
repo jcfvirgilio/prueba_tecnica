@@ -1,6 +1,6 @@
 # Divisas
 
-https://github.com/jcfvirgilio/prueba_tecnica/assets/33680097/3ef2e056-bbdf-4403-afc1-d140679ce6b2
+https://github.com/jcfvirgilio/prueba_tecnica/assets/33680097/578ba6bd-b6f7-40ce-8e6f-116ac763cd1d
 
 # Instrucciones de instalación
 
